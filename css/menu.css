@@ -71,6 +71,19 @@ body {
     filter: brightness(0) saturate(100%) invert(8%) sepia(34%) saturate(1542%) hue-rotate(106deg) brightness(91%) contrast(104%);
 }
 
+.logo-link {
+    text-decoration: none; /* Убирает подчеркивание текста */
+    color: inherit;        /* Оставляет цвет текста таким, какой он в .logo h1 */
+    display: flex;         /* Помогает выровнять иконку и текст внутри ссылки */
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Если вы хотите, чтобы при наведении на весь логотип срабатывал фильтр цвета */
+.logo-link:hover .logo-icon {
+    filter: brightness(0) saturate(100%) invert(8%) sepia(34%) saturate(1542%) hue-rotate(106deg) brightness(91%) contrast(104%); /* Ваш темный фильтр */
+}
+
 .header-icons {
     display: flex;
     gap: 30px;
@@ -140,173 +153,113 @@ body {
     color: var(--text-normal);
 }
 
-/* --- БАННЕРЫ С ФОТО --- */
-.banners {
-    margin-top: 30px;
+/* Контейнер всей сетки */
+.menu-grid {
+    display: grid;
+    /* Создаем 4 колонки равной ширины */
+    grid-template-columns: repeat(4, 1fr); 
+    /* Расстояние между карточками (подберите по макету, примерно 20-30px) */
+    gap: 30px; 
+    padding: 40px 0;
 }
 
-.banner {
-    border-radius: 20px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
+/* КАРТОЧКА БЛЮДА (общие настройки) */
+.menu-card {
     display: flex;
-    justify-content: center;
-    /* 1. Задаём плавность перехода (тайминг и тип анимации) */
-    transition: transform 0.3s ease;
+    flex-direction: column;
+    gap: 15px; /* Расстояние от фото до плашки с текстом */
+    width: 100%; /* Теперь ширина адаптивна под колонку */
+    font-family: 'Inter', sans-serif; /* Шрифт по макету */
+}
 
-    /* 2. Убедимся, что увеличение происходит от центра (это значение по умолчанию, но полезно помнить) */
+/* ОБЕРТКА ДЛЯ ФОТО (важна для анимации) */
+.card-image-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Делает фото идеально квадратным */
+    border-radius: 20px;
+    overflow: hidden; /* Обрезает все, что выходит за рамки */
+}
+
+.card-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease; /* Плавность анимации */
     transform-origin: center;
 }
 
-.banner:hover {
-    /* 3. При наведении увеличиваем на 15% (масштаб 1.15) */
+/* АНИМАЦИЯ 1: Увеличение картинки на 5% (1.05) при наведении НА ВСЮ карточку */
+.menu-card:hover .card-image-wrapper img {
     transform: scale(1.05);
-
-    /* Опционально: можно добавить легкую тень, чтобы баннер выходил вперед */
-    /* box-shadow: 0 10px 20px rgba(0,0,0,0.2); */
 }
 
-.banner-large {
-    height: 350px;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.banner-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.banner-small {
-    height: 250px;
-}
-
-.accent-text {
-    position: absolute;
-    top: 20px;
-    color: var(--accent-bright);
-    font-weight: 800;
-    font-size: 28px;
-    text-transform: uppercase;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.4); /* Тень для читаемости */
-}
-
-/* --- СЕКЦИЯ "О НАС" --- */
-.info-section {
-    padding: 60px 0;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed; /* Красивый эффект при скролле */
-    text-align: center;
-}
-
-.info-content {
-    max-width: 800px;
-}
-
-.info-block {
-    margin-bottom: 40px;
-}
-
-.info-block h4 {
-    font-weight: 800;
-    margin-bottom: 10px;
-    font-size: 16px;
-}
-
-.info-block p {
-    font-weight: 300; /* Легкий шрифт */
-    font-size: 14px;
-}
-
-/* --- ОТЗЫВЫ И ГАЛЕРЕЯ --- */
-.review-gallery-section {
-    text-align: center;
-    padding: 40px 0 60px 0;
-}
-
-.review-block h3 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-.feedback-btn {
-    background-color: var(--text-large);
-    color: #B4E346;
-    border: none;
-    padding: 15px 40px;
-    border-radius: 30px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    /* Магия плавности: цвет будет меняться не мгновенно, а мягко за 0.3 секунды */
-    transition: background-color 0.3s ease;
-}
-
-/* Состояние при наведении (темное) */
-.feedback-btn:hover {
-    background-color: #132200; /* Очень темный зеленый из твоего референса */
-}
-
-.section-title {
-    color: var(--text-large);
-    font-weight: 800;
-    margin-bottom: 10px;
-}
-
-.gallery-block p {
-    font-size: 14px;
-    margin-bottom: 30px;
-    font-weight: 300;
-}
-
-.gallery-grid {
+/* ПЛАШКА С ИНФОРМАЦИЕЙ */
+.card-info {
+    background-color: #B9CCBE; /* Цвет плашки по макету */
+    border-radius: 15px;
+    padding: 15px 20px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     gap: 15px;
 }
 
-.gallery-grid img {
-    width: 24%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 20px;
+.dish-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #002111;
+    margin: 0;
+    transition: color 0.3s ease;
+    cursor: pointer;
 }
 
-.gallery-grid {
-    display: flex;         /* Выстраиваем фото в ряд */
-    gap: 20px;             /* Расстояние между ними */
-    overflow-x: auto;      /* ВКЛЮЧАЕМ СКРОЛЛ */
-    scroll-behavior: smooth; /* Делаем его плавным */
-    padding-bottom: 20px;
-    
-    /* Убираем полоску скролла */
-    -ms-overflow-style: none;  
-    scrollbar-width: none;     
+/* АНИМАЦИЯ 2: Смена цвета НАЗВАНИЯ на #B4E346 при наведении */
+.dish-title:hover {
+    color: #B4E346;
 }
 
-.gallery-grid::-webkit-scrollbar {
-    display: none; /* Скрываем полоску в Chrome/Safari */
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.gallery-grid img {
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 20px;
-    flex-shrink: 0;        /* ОЧЕНЬ ВАЖНО: не дает картинкам сжиматься */
+.dish-price {
+    font-size: 16px;
+    font-weight: 800;
+    color: #002111;
 }
 
-/* Убираем полоску в Chrome, Safari и Opera */
-.gallery-grid::-webkit-scrollbar {
-    display: none;
+.card-actions {
+    display: flex;
+    gap: 12px;
 }
 
-.gallery-grid {
-    scroll-behavior: smooth;
+.action-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    transition: filter 0.3s ease;
+}
+
+/* АНИМАЦИЯ 3: Смена цвета ИКОНОК (корзина, сердце) на #B4E346 при наведении */
+.action-icon:hover {
+    /* Этот фильтр делает из темного цвета точный оттенок #B4E346 */
+    filter: brightness(0) saturate(100%) invert(84%) sepia(21%) saturate(996%) hue-rotate(36deg) brightness(97%) contrast(88%);
+}
+
+/* Адаптивность: если экран станет узким (например, на планшетах), 
+   сетка перестроится в 2 колонки */
+@media (max-width: 1024px) {
+    .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Для мобильных телефонов — в 1 колонку */
+@media (max-width: 600px) {
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* --- ПОДВАЛ (FOOTER) --- */
