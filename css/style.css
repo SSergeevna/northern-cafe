@@ -61,18 +61,27 @@ body {
 
 .header-icons {
     display: flex;
-    gap: 15px;
+    gap: 30px;
     font-size: 20px;
     cursor: pointer;
+}
+
+.header-icons img {
+    transition: filter 0.3s ease; /* Плавный переход */
+}
+
+.header-icons img:hover {
+    /* Этот фильтр примерно перекрашивает черное в #B4E346 */
+    filter: invert(82%) sepia(54%) saturate(543%) hue-rotate(33deg) brightness(96%) contrast(91%);
 }
 
 .header-bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 40px;      /* Это и есть тот самый «межстрочный» интервал */
-    
+    margin-top: 40px;
 }
+
 .nav-links {
     display: flex;
     gap: 100px; /* Тот самый интервал между словами как в Фигме */
@@ -80,7 +89,7 @@ body {
 
 .main-menu {
     display: flex;
-    gap: 30px;
+    gap: 70px; /* Тот самый интервал между словами как в Фигме */
 }
 
 .main-menu a {
@@ -88,6 +97,18 @@ body {
     color: var(--text-normal);
     font-size: 14px;
     font-weight: 400; /* Полужирный */
+}
+
+/* Цвет ссылок в обычном состоянии */
+.main-menu a {
+    color: #000000;         /* Черный или твой основной цвет текста */
+    text-decoration: none;  /* Убирает стандартное подчеркивание */
+    transition: color 0.3s ease; /* Делает смену цвета плавной */
+}
+
+/* Цвет ссылок ПРИ НАВЕДЕНИИ */
+.main-menu a:hover {
+    color: #B4E346;         /* Тот самый ярко-зеленый из кнопок и иконок */
 }
 
 .search-bar {
@@ -187,7 +208,7 @@ body {
     margin-bottom: 20px;
 }
 
-.btn-primary {
+.feedback-btn {
     background-color: var(--text-large);
     color: #B4E346;
     border: none;
@@ -230,35 +251,38 @@ body {
     border-radius: 20px;
 }
 
-/* Главный контейнер, в котором будет происходить прокрутка */
-.gallery-container {
-    width: 100%;
-    overflow-x: auto;      /* Включает горизонтальную прокрутку */
-    padding-bottom: 20px;  /* Отступ снизу, чтобы скроллбар не прилипал к фото */
-    
-    /* Эти две строчки прячут стандартный некрасивый скроллбар браузера */
-    scrollbar-width: none; /* Для Firefox */
-}
-.gallery-container::-webkit-scrollbar {
-    display: none;         /* Для Chrome, Safari и Edge */
-}
-
-/* Блок, который выстраивает картинки в ряд */
 .gallery-grid {
-    display: flex;         /* Ставит элементы в одну линию */
-    gap: 20px;             /* Расстояние между фотографиями (подбери по макету) */
-}
-
-/* Настройки самих фотографий */
-.gallery-grid img {
-    width: 250px;          /* Ширина одной картинки */
-    height: 250px;         /* Высота одной картинки */
-    border-radius: 20px;   /* Скругление углов, как на твоем скриншоте */
-    object-fit: cover;     /* Фото красиво заполняет квадрат без искажений */
+    display: flex;         /* Выстраиваем фото в ряд */
+    gap: 20px;             /* Расстояние между ними */
+    overflow-x: auto;      /* ВКЛЮЧАЕМ СКРОЛЛ */
+    scroll-behavior: smooth; /* Делаем его плавным */
+    padding-bottom: 20px;
     
-    flex-shrink: 0;        /* САМОЕ ВАЖНОЕ СВОЙСТВО: запрещает картинкам сжиматься, заставляя их выстраиваться за пределы экрана */
+    /* Убираем полоску скролла */
+    -ms-overflow-style: none;  
+    scrollbar-width: none;     
 }
 
+.gallery-grid::-webkit-scrollbar {
+    display: none; /* Скрываем полоску в Chrome/Safari */
+}
+
+.gallery-grid img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+    flex-shrink: 0;        /* ОЧЕНЬ ВАЖНО: не дает картинкам сжиматься */
+}
+
+/* Убираем полоску в Chrome, Safari и Opera */
+.gallery-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.gallery-grid {
+    scroll-behavior: smooth;
+}
 
 /* --- ПОДВАЛ (FOOTER) --- */
 .footer {
@@ -288,8 +312,16 @@ body {
 
 .social-icons {
     display: flex;
-    gap: 15px;
-    justify-content: flex-end;
+    gap: 70px;
     font-size: 20px;
     cursor: pointer;
+}
+
+.social-icons img {
+    transition: filter 0.3s ease; /* Плавный переход */
+}
+
+.social-icons img:hover {
+    /* Этот фильтр примерно перекрашивает черное в #B4E346 */
+    filter: invert(82%) sepia(54%) saturate(543%) hue-rotate(33deg) brightness(96%) contrast(91%);
 }
