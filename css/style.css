@@ -1,0 +1,295 @@
+/* --- БАЗОВЫЕ НАСТРОЙКИ И ЦВЕТА --- */
+:root {
+    --bg-color: #E8F1EC;
+    --main-color: #90A79D;
+    --text-large: #4C7362;
+    --text-normal: #132200;
+    --accent-bright: #B4E346;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-normal);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400; /* Обычный шрифт */
+    line-height: 1.5;
+}
+
+/* Контейнер ограничивает ширину сайта по центру */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Полоса-разделитель */
+.divider {
+    border: none;
+    border-top: 2px solid var(--text-large);
+    margin: 30px 0;
+    opacity: 0.8;
+}
+
+/* --- ШАПКА САЙТА --- */
+.header {
+    padding-top: 30px;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    text-align: center;
+    color: var(--text-large);
+}
+
+.logo h1 {
+    font-weight: 800; /* Жирный шрифт */
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+.header-icons {
+    display: flex;
+    gap: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.header-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;      /* Это и есть тот самый «межстрочный» интервал */
+    
+}
+.nav-links {
+    display: flex;
+    gap: 100px; /* Тот самый интервал между словами как в Фигме */
+}
+
+.main-menu {
+    display: flex;
+    gap: 30px;
+}
+
+.main-menu a {
+    text-decoration: none;
+    color: var(--text-normal);
+    font-size: 14px;
+    font-weight: 400; /* Полужирный */
+}
+
+.search-bar {
+    width: 350px; /* Ширина полоски поиска */
+    background-color: var(--main-color);
+    border-radius: 20px;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-normal);
+}
+
+/* --- БАННЕРЫ С ФОТО --- */
+.banners {
+    margin-top: 30px;
+}
+
+.banner {
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.banner-large {
+    height: 350px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.banner-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.banner-small {
+    height: 250px;
+}
+
+.accent-text {
+    position: absolute;
+    top: 20px;
+    color: var(--accent-bright);
+    font-weight: 800;
+    font-size: 28px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.4); /* Тень для читаемости */
+}
+
+/* --- СЕКЦИЯ "О НАС" --- */
+.info-section {
+    padding: 60px 0;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Красивый эффект при скролле */
+    text-align: center;
+}
+
+.info-content {
+    max-width: 800px;
+}
+
+.info-block {
+    margin-bottom: 40px;
+}
+
+.info-block h4 {
+    font-weight: 800;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.info-block p {
+    font-weight: 300; /* Легкий шрифт */
+    font-size: 14px;
+}
+
+/* --- ОТЗЫВЫ И ГАЛЕРЕЯ --- */
+.review-gallery-section {
+    text-align: center;
+    padding: 40px 0 60px 0;
+}
+
+.review-block h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    background-color: var(--text-large);
+    color: #B4E346;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    /* Магия плавности: цвет будет меняться не мгновенно, а мягко за 0.3 секунды */
+    transition: background-color 0.3s ease;
+}
+
+/* Состояние при наведении (темное) */
+.feedback-btn:hover {
+    background-color: #132200; /* Очень темный зеленый из твоего референса */
+}
+
+.section-title {
+    color: var(--text-large);
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.gallery-block p {
+    font-size: 14px;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+.gallery-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.gallery-grid img {
+    width: 24%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+/* Главный контейнер, в котором будет происходить прокрутка */
+.gallery-container {
+    width: 100%;
+    overflow-x: auto;      /* Включает горизонтальную прокрутку */
+    padding-bottom: 20px;  /* Отступ снизу, чтобы скроллбар не прилипал к фото */
+    
+    /* Эти две строчки прячут стандартный некрасивый скроллбар браузера */
+    scrollbar-width: none; /* Для Firefox */
+}
+.gallery-container::-webkit-scrollbar {
+    display: none;         /* Для Chrome, Safari и Edge */
+}
+
+/* Блок, который выстраивает картинки в ряд */
+.gallery-grid {
+    display: flex;         /* Ставит элементы в одну линию */
+    gap: 20px;             /* Расстояние между фотографиями (подбери по макету) */
+}
+
+/* Настройки самих фотографий */
+.gallery-grid img {
+    width: 250px;          /* Ширина одной картинки */
+    height: 250px;         /* Высота одной картинки */
+    border-radius: 20px;   /* Скругление углов, как на твоем скриншоте */
+    object-fit: cover;     /* Фото красиво заполняет квадрат без искажений */
+    
+    flex-shrink: 0;        /* САМОЕ ВАЖНОЕ СВОЙСТВО: запрещает картинкам сжиматься, заставляя их выстраиваться за пределы экрана */
+}
+
+
+/* --- ПОДВАЛ (FOOTER) --- */
+.footer {
+    background-color: var(--main-color);
+    padding: 40px 0;
+    font-size: 12px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.footer-left p, .footer-right p {
+    margin-bottom: 10px;
+}
+
+.copyright {
+    margin-top: 20px;
+    opacity: 0.7;
+}
+
+.footer-right {
+    text-align: right;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    font-size: 20px;
+    cursor: pointer;
+}
